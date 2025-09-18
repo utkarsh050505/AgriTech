@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGRIFUTURE - Your AI Analysis Report</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0f172a; /* Slate 900 */
+        color: #f1f5f9; /* Slate 100 */
+      }
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #052e16 0%,
+          #15803d 100%
+        ); /* Dark Green to Green */
+      }
+      .section-card {
+        background-color: rgba(30, 41, 59, 0.6); /* Slate 800 with opacity */
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(51, 65, 85, 0.5); /* Slate 700 with opacity */
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      .rank-badge {
+        position: absolute;
+        top: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          135deg,
+          #facc15,
+          #fbbf24
+        ); /* Yellow to Amber */
+        color: #422006; /* Dark brown */
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        border: 3px solid #0f172a; /* Slate 900 */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .gauge {
+        width: 250px;
+        height: 125px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 250px 250px 0 0;
+      }
+      .gauge-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: conic-gradient(
+          #ef4444 0% 33%,
+          /* Red */ #facc15 33% 66%,
+          /* Yellow */ #22c55e 66% 100% /* Green */
+        );
+        transform: rotate(270deg);
+      }
+      .gauge-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f172a; /* Slate 900 */
+        transform-origin: center bottom;
+        transition: transform 1.5s ease-out;
+      }
+      .gauge-cover {
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        background: #1e293b; /* Slate 800 */
+        border-radius: 200px 200px 0 0;
+        top: 25px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .gauge-score {
+        font-size: 3rem;
+        font-weight: 800;
+      }
+      .gauge-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+      <div class="container mx-auto px-6 py-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white">
+           NAMMA AGRIFUTURE
+        </h1>
+        <p class="text-xl text-green-200 mt-2">
+          Your Farm's AI Analysis Report
+        </p>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-16">
+      <!-- Introduction -->
+      <div class="text-center mb-16 fade-in" style="animation-delay: 200ms">
+        <h2 class="text-3xl md:text-4xl font-bold text-white">
+          Analysis Complete!
+        </h2>
+        <p class="text-lg text-slate-300 max-w-3xl mx-auto mt-4">
+          Hello Farmer! Our AI has analyzed your farm's unique data. Here is a
+          simple plan to help you increase your profits and improve your soil
+          for long-term success.
+        </p>
+      </div>
+
+      <!-- Top 5 Recommended Crops -->
+      <section class="mb-16 fade-in" style="animation-delay: 400ms">
+        <h3 class="text-3xl font-bold text-center mb-10">
+          <i class="fas fa-seedling mr-3 text-green-400"></i>Top 5 Recommended
+          Crops
+        </h3>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 md:gap-6"
+        >
+          <!-- CROP 1 - BEST CHOICE -->
+          <div
+            class="section-card mt-8 relative text-center transform hover:scale-105 hover:border-yellow-400 transition-all duration-300"
+          >
+            <div class="rank-badge">1st Choice</div>
+            <i class="fas fa-star text-6xl text-yellow-400 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white">Soybean</h4>
+            <p class="text-sm text-slate-400 mb-4">
+              High demand, fixes soil nitrogen.
+            </p>
+            <div class="text-left space-y-2 mt-6">
+              <p><strong class="text-green-300">Est. Profit:</strong> High</p>
+              <p>
+                <strong class="text-green-300">Feasibility:</strong> Excellent
+              </p>
+            </div>
+          </div>
+
+          <!-- CROP 2 -->
+          <div
+            class="section-card mt-8 relative text-center transform hover:scale-105 hover:border-slate-300 transition-all duration-300"
+            style="animation-delay: 100ms"
+          >
+            <div class="rank-badge bg-slate-300 text-slate-800">2nd Choice</div>
+            <i class="fas fa-leaf text-6xl text-slate-300 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white">Maize (Corn)</h4>
+            <p class="text-sm text-slate-400 mb-4">
+              Stable market, good rotation crop.
+            </p>
+            <div class="text-left space-y-2 mt-6">
+              <p>
+                <strong class="text-green-300">Est. Profit:</strong> Med-High
+              </p>
+              <p>
+                <strong class="text-green-300">Feasibility:</strong> Excellent
+              </p>
+            </div>
+          </div>
+
+          <!-- CROP 3 -->
+          <div
+            class="section-card mt-8 relative text-center transform hover:scale-105 hover:border-slate-300 transition-all duration-300"
+            style="animation-delay: 200ms"
+          >
+            <div class="rank-badge bg-slate-300 text-slate-800">3rd Choice</div>
+            <i class="fas fa-seedling text-6xl text-slate-300 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white">Pigeon Pea (Tur)</h4>
+            <p class="text-sm text-slate-400 mb-4">
+              Drought tolerant, good for intercropping.
+            </p>
+            <div class="text-left space-y-2 mt-6">
+              <p><strong class="text-green-300">Est. Profit:</strong> Medium</p>
+              <p><strong class="text-green-300">Feasibility:</strong> High</p>
+            </div>
+          </div>
+
+          <!-- CROP 4 -->
+          <div
+            class="section-card mt-8 relative text-center transform hover:scale-105 hover:border-slate-300 transition-all duration-300"
+            style="animation-delay: 300ms"
+          >
+            <div class="rank-badge bg-slate-300 text-slate-800">4th Choice</div>
+            <i class="fas fa-carrot text-6xl text-slate-300 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white">Marigold</h4>
+            <p class="text-sm text-slate-400 mb-4">
+              Short cycle, repels pests naturally.
+            </p>
+            <div class="text-left space-y-2 mt-6">
+              <p><strong class="text-green-300">Est. Profit:</strong> High</p>
+              <p><strong class="text-green-300">Feasibility:</strong> Medium</p>
+            </div>
+          </div>
+
+          <!-- CROP 5 -->
+          <div
+            class="section-card mt-8 relative text-center transform hover:scale-105 hover:border-slate-300 transition-all duration-300"
+            style="animation-delay: 400ms"
+          >
+            <div class="rank-badge bg-slate-300 text-slate-800">5th Choice</div>
+            <i class="fas fa-lemon text-6xl text-slate-300 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white">Millet (Bajra)</h4>
+            <p class="text-sm text-slate-400 mb-4">
+              Needs less water, highly nutritious.
+            </p>
+            <div class="text-left space-y-2 mt-6">
+              <p><strong class="text-green-300">Est. Profit:</strong> Medium</p>
+              <p><strong class="text-green-300">Feasibility:</strong> High</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Soil Health Score -->
+      <section class="mb-16 fade-in" style="animation-delay: 600ms">
+        <h3 class="text-3xl font-bold text-center mb-10">
+          <i class="fas fa-vial-circle-check mr-3 text-green-400"></i>Your Soil
+          Health Score
+        </h3>
+        <div
+          class="section-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        >
+          <div class="flex flex-col items-center justify-center">
+            <div class="gauge mx-auto">
+              <div class="gauge-bg"></div>
+              <div id="gauge-fill" class="gauge-fill"></div>
+              <div class="gauge-cover">
+                <span id="gauge-score" class="gauge-score text-green-400"
+                  >0</span
+                >
+                <span id="gauge-label" class="gauge-label text-green-400"
+                  >Loading...</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="text-center md:text-left">
+            <h4 class="text-2xl font-bold text-white mb-3">
+              Great news! Your soil is healthy.
+            </h4>
+            <p class="text-slate-300">
+              A score of <strong class="text-white">82 out of 100</strong> means
+              your soil has a strong foundation. Our AI checked for the
+              following:
+            </p>
+            <ul class="list-none space-y-2 mt-4 text-left inline-block">
+              <li>
+                <i class="fas fa-check-circle text-green-400 mr-2"></i>Good
+                Nitrogen levels from past crops.
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-green-400 mr-2"></i>Low risk
+                of salinity.
+              </li>
+              <li>
+                <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i
+                >Slightly low organic carbon (easy to fix).
+              </li>
+            </ul>
+            <p class="text-sm text-slate-400 mt-4">
+              This score indicates a low risk to long-term soil health. The
+              recommendations below will help you improve it even further.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Recommendations -->
+      <section class="fade-in" style="animation-delay: 800ms">
+        <h3 class="text-3xl font-bold text-center mb-10">
+          <i class="fas fa-bullseye mr-3 text-green-400"></i>Final AI
+          Recommendations & Action Plan
+        </h3>
+        <div class="section-card">
+          <p class="text-center text-lg text-slate-300 mb-8">
+            Follow this simple plan to achieve your financial goals and build a
+            healthier farm.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <!-- Recommendation 1: What to Plant -->
+            <div>
+              <div
+                class="bg-green-500/20 text-green-300 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-lightbulb text-4xl"></i>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2">
+                1. Your Best Bet for Profit
+              </h4>
+              <p class="text-slate-300">
+                Plant <strong class="text-yellow-300">Soybean</strong> as your
+                main crop this season. It has the highest profit potential and
+                market demand based on your region.
+              </p>
+            </div>
+
+            <!-- Recommendation 2: How to Improve Soil -->
+            <div>
+              <div
+                class="bg-green-500/20 text-green-300 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-recycle text-4xl"></i>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2">
+                2. Improve Soil, Cut Costs
+              </h4>
+              <p class="text-slate-300">
+                After the Soybean harvest, leave the crop residue (stems and
+                leaves) on the field. This will naturally increase your soil's
+                organic carbon and reduce the need for fertilizer next year.
+              </p>
+            </div>
+
+            <!-- Recommendation 3: Smart Tip -->
+            <div>
+              <div
+                class="bg-green-500/20 text-green-300 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-hand-holding-droplet text-4xl"></i>
+              </div>
+              <h4 class="text-xl font-bold text-white mb-2">
+                3. A Smart Farming Tip
+              </h4>
+              <p class="text-slate-300">
+                Consider planting a few rows of
+                <strong class="text-yellow-300">Marigold</strong> on the border
+                of your field. It acts as a natural pest repellent for Soybean,
+                reducing your pesticide costs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900/50 mt-16 border-t border-slate-700">
+      <div class="container mx-auto px-6 py-8 text-center text-slate-400">
+        <p>&copy; 2025 AGRIFUTURE. Your trusted partner in smart farming.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const soilHealthScore = 82; // The final score (out of 100)
+
+        const gaugeFill = document.getElementById("gauge-fill");
+        const gaugeScoreEl = document.getElementById("gauge-score");
+        const gaugeLabelEl = document.getElementById("gauge-label");
+
+        // Convert score to angle (0-100 score -> 0-180 degrees)
+        const angle = (soilHealthScore / 100) * 180;
+        const fillAngle = 180 - angle;
+
+        // Set label and color based on score
+        let label = "Low Risk";
+        let color = "text-green-400";
+        if (soilHealthScore < 33) {
+          label = "High Risk";
+          color = "text-red-400";
+        } else if (soilHealthScore < 66) {
+          label = "Medium Risk";
+          color = "text-yellow-400";
+        }
+
+        // Animate score count-up
+        let currentScore = 0;
+        const scoreAnimation = setInterval(() => {
+          if (currentScore >= soilHealthScore) {
+            clearInterval(scoreAnimation);
+            gaugeScoreEl.textContent = soilHealthScore;
+          } else {
+            currentScore++;
+            gaugeScoreEl.textContent = currentScore;
+          }
+        }, 15);
+
+        // Apply styles after a short delay for animation
+        setTimeout(() => {
+          gaugeFill.style.transform = `rotate(${fillAngle}deg)`;
+          gaugeScoreEl.className = `gauge-score ${color}`;
+          gaugeLabelEl.className = `gauge-label ${color}`;
+          gaugeLabelEl.textContent = label;
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
