@@ -71,3 +71,6 @@ Current advisory systems are either profit-only or too complex.
 - **Stronger farming communities** through shared knowledge.  
 
 👉 **In short: More income today, healthier soil tomorrow, resilient farmers forever.**
+
+
+Dataset link: https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset
