@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NAMMA AGRIFUTURE - AI Crop Diversification Advisor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add Choices.js CSS for searchable dropdowns -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+    <!-- Add Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .hero-bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+          ),
+          url("https://images.unsplash.com/photo-1597992928132-83a8b4b0f62d?q=80&w=2070&auto=format=fit=crop");
+        background-size: cover;
+        background-position: center;
+      }
+      .form-section-title {
+        border-bottom: 2px solid #22c55e; /* green-500 */
+        padding-bottom: 8px;
+        margin-bottom: 24px;
+      }
+      /* Custom styles for Choices.js to match the theme */
+      .choices__inner {
+        background-color: #fff;
+        border-radius: 0.5rem;
+        border: 1px solid #d1d5db;
+        padding: 0.35rem 0.75rem;
+        min-height: 42px;
+      }
+      .choices[data-type*="select-one"].is-focused .choices__inner,
+      .choices[data-type*="select-multiple"].is-focused .choices__inner {
+        border-color: #3b82f6; /* blue-500 */
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+      .choices__list--dropdown .choices__item--selectable.is-highlighted {
+        background-color: #3b82f6; /* blue-500 */
+      }
+      .choices__list[aria-expanded] .choices__item {
+        padding-right: 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <h1 class="text-3xl font-bold text-green-600">NAMMA AGRIFUTURE</h1>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-bg text-white">
+        <div class="container mx-auto px-6 py-24 text-center">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            AI-Powered Crop Diversification Advisor
+          </h2>
+          <p class="text-lg md:text-xl max-w-3xl mx-auto">
+            Make data-driven decisions to boost your yield, improve soil health,
+            and achieve your financial goals. Fill out the form below to get
+            started.
+          </p>
+        </div>
+      </section>
+
+      <!-- Form Section -->
+      <section class="container mx-auto px-6 py-16">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-bold text-center mb-8">
+            Tell Us About Your Farm
+          </h3>
+
+          <form id="advisor-form">
+            <!-- Section 1: Farmer & Farm Details -->
+            <div class="mb-10">
+              <h4
+                class="text-xl font-semibold text-gray-700 form-section-title"
+              >
+                1. Farmer & Farm Details
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                  <label
+                    for="state"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >State</label
+                  >
+                  <!-- State field set to Karnataka and non-editable -->
+                  <input
+                    type="text"
+                    id="state"
+                    readonly
+                    value="Karnataka"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="land-size"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Land Size (in Acres)</label
+                  >
+                  <input
+                    type="number"
+                    id="land-size"
+                    min="0"
+                    step="0.1"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="e.g., 5.5"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="annual-income"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Current Annual Income (INR)</label
+                  >
+                  <input
+                    type="number"
+                    id="annual-income"
+                    min="0"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="e.g., 300000"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="financial-goal"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Financial Goal</label
+                  >
+                  <input
+                    type="text"
+                    id="financial-goal"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="e.g., Increase profit by 25%"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Soil & Water Details -->
+            <div class="mb-10">
+              <h4
+                class="text-xl font-semibold text-gray-700 form-section-title"
+              >
+                2. Soil & Water Resources
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                  <label
+                    for="soil-type"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Primary Soil Type</label
+                  >
+                  <select
+                    id="soil-type"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Select Soil Type</option>
+                    <option value="alluvial">Alluvial Soil</option>
+                    <option value="black">Black (Regur) Soil</option>
+                    <option value="red_yellow">Red and Yellow Soil</option>
+                    <option value="laterite">Laterite Soil</option>
+                    <option value="arid">Arid Soil</option>
+                    <option value="saline">Saline Soil</option>
+                    <option value="peaty">Peaty Soil</option>
+                    <option value="forest">Forest Soil</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    for="water-availability"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Water Availability</label
+                  >
+                  <select
+                    id="water-availability"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Select Water Source</option>
+                    <option value="canal">Canal Irrigation</option>
+                    <option value="well">Well / Tube Well</option>
+                    <option value="tank">Tank / Pond</option>
+                    <option value="rainfed">Fully Rain-fed</option>
+                    <option value="drip">Drip Irrigation System</option>
+                  </select>
+                </div>
+                <div class="md:col-span-2">
+                  <label
+                    for="soil-properties-select"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Soil Properties (if known)</label
+                  >
+                  <select id="soil-properties-select" multiple></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Cropping History -->
+            <div class="mb-10">
+              <h4
+                class="text-xl font-semibold text-gray-700 form-section-title"
+              >
+                3. Past Year's Crop Rotation
+              </h4>
+              <div id="crop-rotation-container" class="space-y-6 mt-6">
+                <!-- JS will add crop cycles here -->
+              </div>
+              <button
+                type="button"
+                id="add-crop-cycle"
+                class="mt-4 px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                + Add Crop Cycle
+              </button>
+            </div>
+
+            <!-- Section 4: Regional Challenges -->
+            <div class="mb-10">
+              <h4
+                class="text-xl font-semibold text-gray-700 form-section-title"
+              >
+                4. Regional Pests & Diseases
+              </h4>
+              <div>
+                <label
+                  for="pests-diseases-select"
+                  class="block text-sm font-medium text-gray-600 mb-1"
+                  >Common Pests & Diseases in Your Region</label
+                >
+                <select id="pests-diseases-select" multiple></select>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button
+                type="submit"
+                class="w-full md:w-auto px-8 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105"
+              >
+                Get Analysis
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+      <div class="container mx-auto px-6 py-8 text-center">
+        <p>&copy; 2025 NAMMA AGRIFUTURE. All Rights Reserved.</p>
+        <p class="text-sm text-gray-400">
+          Pioneering a sustainable future for agriculture.
+        </p>
+      </div>
+    </footer>
+    
+    <!-- Add Choices.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Data for Dropdowns ---
+        const majorCrops = [
+            { value: '', label: 'Select a Crop', placeholder: true, disabled: true },
+            "Rice (Paddy)", "Maize (Corn)", "Millet (Bajra)", "Sorghum (Jowar)", "Cotton", "Soybean", "Groundnut (Peanut)", "Sugarcane", "Turmeric", "Pulses (Urad, Moong)", "Ragi",
+            "Wheat", "Barley", "Gram (Chickpea)", "Mustard", "Peas", "Linseed", "Oats",
+            "Watermelon", "Muskmelon", "Cucumber", "Bitter Gourd",
+            "Tea", "Coffee", "Rubber", "Jute", "Tobacco", "Potato", "Onion", "Tomato", "Mango", "Banana", "Coconut", "Areca nut"
+        ].map(crop => ({ value: crop, label: crop }));
+
+        const soilProperties = [
+            "High Nitrogen", "Low Nitrogen", "High Phosphorus", "Low Phosphorus", "High Potassium", "Low Potassium",
+            "Acidic pH (Below 6.5)", "Neutral pH (6.5-7.5)", "Alkaline pH (Above 7.5)", "High Organic Carbon", "Low Organic Carbon",
+            "Saline Soil", "Waterlogging Issues", "Good Drainage"
+        ].map(prop => ({ value: prop, label: prop }));
+
+        const pestsAndDiseases = [
+            "Stem Borer", "Bollworm", "Whitefly", "Aphids", "Jassids", "Thrips", "Leaf Folder",
+            "Powdery Mildew", "Downy Mildew", "Bacterial Blight", "Fungal Rust", "Root Rot", "Wilt Disease"
+        ].map(item => ({ value: item, label: item }));
+
+
+        // --- Initialize Multi-select Dropdowns ---
+        const soilPropertiesElement = document.getElementById('soil-properties-select');
+        soilPropertiesElement.innerHTML = soilProperties.map(prop => `<option value="${prop.value}">${prop.label}</option>`).join('');
+        new Choices(soilPropertiesElement, {
+            removeItemButton: true,
+            searchEnabled: true,
+            placeholder: true,
+            placeholderValue: 'Select known properties...'
+        });
+
+        const pestsDiseasesElement = document.getElementById('pests-diseases-select');
+        pestsDiseasesElement.innerHTML = pestsAndDiseases.map(item => `<option value="${item.value}">${item.label}</option>`).join('');
+        new Choices(pestsDiseasesElement, {
+            removeItemButton: true,
+            searchEnabled: true,
+            placeholder: true,
+            placeholderValue: 'Select common issues...'
+        });
+
+
+        // --- Dynamic Crop Rotation Section ---
+        const cropRotationContainer = document.getElementById("crop-rotation-container");
+        const addCropCycleBtn = document.getElementById("add-crop-cycle");
+        const advisorForm = document.getElementById("advisor-form");
+        let cycleCount = 0;
+
+        const addCropCycle = () => {
+          cycleCount++;
+          const cycleDiv = document.createElement("div");
+          cycleDiv.classList.add( "grid", "grid-cols-1", "sm:grid-cols-3", "gap-4", "p-4", "bg-gray-100", "rounded-lg", "border" );
+          
+          cycleDiv.innerHTML = `
+            <div class="sm:col-span-2">
+                <label for="crop-name-${cycleCount}" class="block text-sm font-medium text-gray-600">Crop Name</label>
+                <select id="crop-name-${cycleCount}" class="crop-select mt-1 w-full"></select>
+            </div>
+            <div class="flex items-end gap-2">
+                <div class="flex-grow">
+                    <label for="season-${cycleCount}" class="block text-sm font-medium text-gray-600">Season</label>
+                    <select id="season-${cycleCount}" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 h-[42px]">
+                        <option value="kharif">Kharif</option>
+                        <option value="rabi">Rabi</option>
+                        <option value="zaid">Zaid</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" title="Delete Cycle" class="delete-cycle-btn h-[42px] w-10 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+          `;
+          cropRotationContainer.appendChild(cycleDiv);
+
+          // Attach event listener to the new delete button
+          cycleDiv.querySelector('.delete-cycle-btn').addEventListener('click', () => {
+              cycleDiv.remove();
+          });
+          
+          // --- Initialize Searchable Crop Dropdown for the new cycle ---
+          const newCropSelect = document.getElementById(`crop-name-${cycleCount}`);
+          newCropSelect.innerHTML = majorCrops.map(crop => `<option value="${crop.value}">${crop.label}</option>`).join('');
+          new Choices(newCropSelect, {
+              searchEnabled: true,
+              removeItemButton: false,
+              itemSelectText: '',
+              placeholder: true,
+              placeholderValue: 'Search for a crop...'
+          });
+        };
+
+        // Add two cycles by default
+        addCropCycle();
+        addCropCycle();
+
+        addCropCycleBtn.addEventListener("click", addCropCycle);
+
+        advisorForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          // On form submission, navigate to the output page
+          window.location.href = 'output.html';
+        });
+      });
+    </script>
+  </body>
+</html>
